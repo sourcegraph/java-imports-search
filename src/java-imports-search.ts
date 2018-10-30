@@ -20,10 +20,9 @@ export function activate(): void {
         from(doc.text.split('\n')).pipe(
             concatMap(
                 (line, lineNumber) => {
-                    const javaPkgRegex = /^import\s(?:static\s)?([^\s]*)[^\\s]*;$/
+                    const javaPkgRegex = /^import\s(?:static\s)?([^\s]*)[^\s]*;$/
                     const match = javaPkgRegex.exec(line);
                     if (match && match.length > 1) {
-                        console.log(match)
                         // The match index depends on which regex pattern actually produced a match
                         const pkgName = match[1]
                         return of({lineNumber, pkgName});

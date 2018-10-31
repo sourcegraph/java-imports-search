@@ -10,13 +10,16 @@ export function activate(): void {
                const javaImportsFilter = query.match(javaImportsRegex)
                const javaPkg = javaImportsFilter && javaImportsFilter.length >= 1 ? javaImportsFilter[1] : ''
                const javaImport = '^import\\s(?:static\\s)?' + javaPkg + '[^\\s]*;$'
-               return query.replace(javaImportsRegex  , `(${javaImport})`)
+               return query.replace(javaImportsRegex  , `${javaImport} lang:java `)
            }
            return query
         }
    })
 
    sourcegraph.workspace.onDidOpenTextDocument.subscribe(doc => {
+       if (doc.languageId !== 'java') {
+            return
+        }
         from(doc.text.split('\n')).pipe(
             concatMap(
                 (line, lineNumber) => {

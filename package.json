@@ -2,7 +2,7 @@
   "name": "java-imports-search",
   "title": "Java imports search",
   "description": "Lets you easily search for all files using a Java package. Adds a new operator `java.imports:` for all import statements of the package passed to the operator. This extension also adds a \"See all usages\" link at the end of import statement lines, which will execute the `java.imports` search for the relevant module.",
-  "publisher": "farhan",
+  "publisher": "sourcegraph",
   "activationEvents": [
     "*"
   ],

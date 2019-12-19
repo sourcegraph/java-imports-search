@@ -1,6 +1,10 @@
 # Java imports search
 
-Lets you easily search for all files using a Java package. Adds a new operator `java.imports:` for all import statements of the package passed to the operator. This extension also adds a "See all usages" link at the end of import statement lines, which will execute the `java.imports` search for the relevant module.
+Lets you easily search for all files using a Java package. Adds a new operator `java.imports:` for all import statements of the package passed to the operator.
+
+NOTE: regular expression search mode is required for the `java.imports` keyword to work. The extension automatically appends `patternType:regexp` to queries containing `java.imports`.
+
+This extension also adds a "See all usages" link at the end of import statement lines, which will execute the `java.imports` search for the relevant module. To enable "See all usages" links, add `"javaImports.showAllUsagesLinks": true` to your user settings.
 
 ## Prerequisites
 

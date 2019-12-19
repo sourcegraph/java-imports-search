@@ -1,15 +1,18 @@
 import { from, Subscription } from 'rxjs'
 import { filter, map, switchMap } from 'rxjs/operators'
 import * as sourcegraph from 'sourcegraph'
+import { ExtensionContext } from 'sourcegraph'
 import { resolveSettings, Settings } from './settings'
 
 const decorationType = sourcegraph.app.createDecorationType && sourcegraph.app.createDecorationType()
 const settings = resolveSettings(sourcegraph.configuration.get<Settings>().value)
 
-export function activate(): void {
-    const subscriptions = new Subscription()
-
-    subscriptions.add(
+export function activate(
+    context: ExtensionContext = {
+        subscriptions: new Subscription(),
+    }
+): void {
+    context.subscriptions.add(
         sourcegraph.search.registerQueryTransformer({
             transformQuery: (query: string) => {
                 const javaImportsRegex = /\bjava.imports:([^\s]*)/
@@ -37,7 +40,7 @@ export function activate(): void {
               map(() => (sourcegraph.app.activeWindow && sourcegraph.app.activeWindow.visibleViewComponents) || [])
           )
 
-    subscriptions.add(
+    context.subscriptions.add(
         editorsChanges.subscribe(codeEditors => {
             const codeEditor = codeEditors[0]
             if (!settings['javaImports.showAllUsagesLinks']) {

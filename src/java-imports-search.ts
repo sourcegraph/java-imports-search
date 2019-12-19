@@ -1,7 +1,6 @@
 import { from, Subscription } from 'rxjs'
 import { filter, map, switchMap } from 'rxjs/operators'
-import * as sourcegraph from 'sourcegraph'
-import { ExtensionContext } from 'sourcegraph'
+import sourcegraph, { ExtensionContext } from 'sourcegraph'
 import { resolveSettings, Settings } from './settings'
 
 const decorationType = sourcegraph.app.createDecorationType && sourcegraph.app.createDecorationType()

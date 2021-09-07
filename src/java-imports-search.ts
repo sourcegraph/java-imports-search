@@ -46,6 +46,10 @@ export function activate(
                     return
                 }
 
+                if (codeEditor.type !== 'CodeEditor') {
+                    return
+                }
+
                 const document = codeEditor.document
                 if (document.languageId !== 'java') {
                     return

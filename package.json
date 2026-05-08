@@ -45,6 +45,6 @@
   },
   "dependencies": {
     "@sourcegraph/prettierrc": "^3.0.1",
-    "rxjs": "^6.5.3"
+    "rxjs": "7.8.0"
   }
 }
